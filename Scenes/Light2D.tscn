@@ -9,7 +9,7 @@ position = Vector2( 0, -1.27631 )
 texture = ExtResource( 2 )
 energy = 9.23
 shadow_enabled = true
-shadow_gradient_length = 5.0
+shadow_gradient_length = 1.0
 shadow_filter = 5
 shadow_filter_smooth = 10.0
 

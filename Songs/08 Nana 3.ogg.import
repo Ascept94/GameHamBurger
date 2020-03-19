@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/08 Nana 3.ogg-a60245f919cf2b62a768dc57d16beaf0.oggstr"
+
+[deps]
+
+source_file="res://Songs/08 Nana 3.ogg"
+dest_files=[ "res://.import/08 Nana 3.ogg-a60245f919cf2b62a768dc57d16beaf0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

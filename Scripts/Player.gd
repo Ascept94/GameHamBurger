@@ -6,7 +6,7 @@ extends KinematicBody2D
 export var radius: float = 30
 export var semiCircle = PoolVector2Array()
 export var health: float = 1
-export var speed: float = 20000
+export var speed: float = 15000
 
 var pre_joystickpos: Vector2  = Vector2()
 
