@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+
+[node name="ViewportContainer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_top = 10.6302
+margin_bottom = 24.6302
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_right = 1024.0
+margin_bottom = 14.0
+alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_left = 475.0
+margin_right = 529.0
+margin_bottom = 14.0
+text = "TIEMPO:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+margin_left = 533.0
+margin_right = 549.0
+margin_bottom = 14.0
+text = "10"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+value = 100.0
+texture_progress = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
