@@ -1,8 +1,5 @@
-extends KinematicBody2D
+extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 export var radius: float = 30
 export var semiCircle = PoolVector2Array()
 export var health: float = 1
@@ -10,26 +7,21 @@ export var speed: float = 15000
 
 var pre_joystickpos: Vector2  = Vector2()
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	_setBarrier()
 	pass
 
 func _process(delta):
 	_moveBarrier()
-	_setBarrier()
-	pass
-	
-func _physics_process(delta):
 	_movePlayer(delta)
 	pass
-
+	
 func _movePlayer(delta):
 	var step: Vector2 = Vector2(
 		Input.get_action_strength("move_right")-Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down")-Input.get_action_strength("move_up")
 	)
-	move_and_slide(step*delta*speed)
+	self.position += step * speed * delta
 	pass
 
 func _moveBarrier():
@@ -38,6 +30,8 @@ func _moveBarrier():
 		Input.get_action_strength("move_barrier_left")-Input.get_action_strength("move_barrier_right"),
 		Input.get_action_strength("move_barrier_up")-Input.get_action_strength("move_barrier_down")
 	)
+	
+	
 	
 	var angle = 0
 	if Input.get_connected_joypads():
@@ -56,7 +50,7 @@ func _setBarrier():
 	var points = _calculateCircle(radius)
 	$Polygon2D.polygon = points
 	$LightOccluder2D.occluder.polygon = points
-	$CollisionPolygon2D.polygon = points
+	$BarrierArea/CollisionPolygon2D.polygon = points
 	pass
 	
 	
@@ -68,3 +62,8 @@ func _calculateCircle(radius):
 		points.push_back(Vector2((radius-5)*cos(deg2rad((-60+2*j)*health +180)), (radius-5)*sin(deg2rad((-60+2*j)*health+180))))	
 	return points
 	pass
+
+
+func _on_damage(vector):
+	print(vector)
+	pass # Replace with function body.
