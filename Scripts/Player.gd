@@ -17,6 +17,7 @@ func _ready():
 
 func _process(delta):
 	_moveBarrier()
+	_setBarrier()
 	pass
 	
 func _physics_process(delta):

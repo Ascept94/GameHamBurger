@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/Star.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/StartFlicker.gd" type="Script" id=2]
+
+[node name="Light2D2" type="Light2D"]
+position = Vector2( -144.392, -5.34785 )
+texture = ExtResource( 1 )
+texture_scale = 0.01
+energy = 8.0
+script = ExtResource( 2 )
+
+[node name="EnterScene" type="Timer" parent="."]
+one_shot = true
+autostart = true
+[connection signal="timeout" from="EnterScene" to="." method="_on_EnterScene_timeout"]
