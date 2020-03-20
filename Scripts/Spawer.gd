@@ -14,6 +14,7 @@ func _on_Timer_timeout():
 	pass
 
 func _spawn_light():
+	$Timer.wait_time = 30
 	var viewport_size = get_viewport().size
 	var obj = light.instance()
 	var direction = DIRECTIONS.values()[randi() % DIRECTIONS.size()]

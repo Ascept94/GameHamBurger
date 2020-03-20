@@ -38,7 +38,8 @@ func _check_distance():
 	var player_distance = player.global_position.distance_to(self.global_position)
 	if player_distance < radius:
 		$RayCast2D.set_cast_to(player.global_position - self.global_position)
-		if not $RayCast2D.is_colliding():
+		yield(get_tree().create_timer(0.001), "timeout")
+		if not $RayCast2D.is_colliding() || $RayCast2D.get_collision_point().distance_to(self.global_position) > player_distance :
 			emit_signal("damage", player_distance)
 	pass
 func _check_screen_bounds():
@@ -60,10 +61,11 @@ func _move(delta):
 func _on_Area2D_area_entered(area):
 	var difference: Vector2 = self.global_position - area.global_position
 	direction = direction.bounce(difference.normalized())
+	_move(0.01)
 	pass # Replace with function body.
 
 
 func _on_VisibilityNotifier2D_viewport_entered(viewport):
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.75), "timeout")
 	check_bounds = true
 	pass # Replace with function body.
