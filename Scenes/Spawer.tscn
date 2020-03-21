@@ -1,14 +1,29 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Spawer.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Light2D.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Star2D.tscn" type="PackedScene" id=3]
 
 [node name="Spawer" type="Node2D"]
 script = ExtResource( 1 )
 spaw_distance = 200.0
 light = ExtResource( 2 )
+star = ExtResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 30.0
 autostart = true
+
+[node name="StarTimer" type="Timer" parent="."]
+wait_time = 1.7
+
+[node name="OffsetTimer" type="Timer" parent="."]
+wait_time = 3.6
+one_shot = true
+autostart = true
+__meta__ = {
+"_editor_description_": "3.6"
+}
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="StarTimer" to="." method="_on_StarTimer_timeout"]
+[connection signal="timeout" from="OffsetTimer" to="." method="_on_OffsetTimer_timeout"]

@@ -16,10 +16,13 @@ func _ready():
 func _process(delta):
 	_moveBarrier()
 	_movePlayer(delta)
+	_isNearBounds()
 	pass
 	
 func _physics_process(delta):
-	if (health < 1):
+	if (health <= 0):
+		_game_over()
+	elif (health < 1):
 		health += 0.0004
 	_setBarrier()
 	pass
@@ -65,6 +68,14 @@ func _isInBounds(newPos):
 	
 	return newPos
 	
+func _isNearBounds():
+	var window_size = OS.window_size
+	
+	if (self.position.y > window_size.y-50 || self.position.y < 50):
+		health -= 0.0025		
+	elif (self.position.x > window_size.x-50 || self.position.x < 50):
+		health -= 0.0025		
+	
 	
 func _setBarrier():
 	var points = _calculateCircle(radius)
@@ -96,3 +107,12 @@ func _on_damage(distance):
 	health -= 0.001*(5-distance/100)
 	#_setBarrier()
 	pass # Replace with function body.
+	
+func _on_damage_burst():
+	health -= 0.1
+	pass
+	
+func _game_over():
+	print("game over")
+	get_tree().quit()
+	pass

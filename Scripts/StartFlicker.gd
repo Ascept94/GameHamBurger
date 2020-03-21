@@ -1,25 +1,54 @@
-extends Light2D
+extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var glowRadius = 10
+var player
+var player_distance
+var reached = false
 
+signal damage_burst
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	_get_player()
+	connect("damage_burst",player,"_on_damage_burst")
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# warning-ignore:unused_argument
 func _process(delta):
-	if (self.texture_scale < 1):
-		self.texture_scale += 0.05
+	_explode()
+	player_distance =  player.global_position.distance_to(self.global_position)
+	if (glowRadius > player_distance && not reached):
+		_check_collision()
 	pass
 
-
-
-func _on_EnterScene_timeout():
+func _explode():
+	if ($Star.texture_scale < 1.5):
+		$Star.texture_scale += 0.035
+		$Star.rotation += 0.15
+	elif($Star.energy >= 0):
+		$Star.texture_scale += 1
+		$Star.energy -= 0.3
+		$Star.rotation += 0.1
+		$Star/Glow.texture_scale += 0.3
+		$Star/Glow.energy -= 0.1
+		glowRadius += 30
+	elif ($Star/Glow.energy >= 0):
+		$Star/Glow.texture_scale += 0.3
+		$Star/Glow.energy -= 0.1
+		glowRadius += 70
+	else:
+		queue_free()
+	pass
 	
-	pass # Replace with function body.
+func _check_collision():
+	reached = true
+	$RayCast2D.set_cast_to((player.global_position - self.global_position)/2)
+	yield(get_tree().create_timer(0.017), "timeout")
+	if not $RayCast2D.is_colliding():
+		emit_signal("damage_burst")
+	pass
+		
+func _get_player():
+	player = get_tree().get_nodes_in_group("Player")[0]
+	pass
