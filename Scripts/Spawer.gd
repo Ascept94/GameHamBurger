@@ -19,7 +19,7 @@ func _on_StarTimer_timeout():
 	pass
 	
 func _spawn_light():
-	var WindowSize = OS.window_size/2
+	var WindowSize = get_viewport().size
 	var obj = light.instance()
 	var direction = DIRECTIONS.values()[randi() % DIRECTIONS.size()]
 	var spawn_pos
@@ -41,11 +41,12 @@ func _spawn_light():
 	pass
 	
 func _spawn_star():
-	var WindowSize = OS.window_size/2
+	var WindowSize = get_viewport().size
 	var obj = star.instance()
 	var spawn_pos
-	spawn_pos = Vector2(rand_range(50, WindowSize.x -50), rand_range(50, WindowSize.y-50))	
+	spawn_pos = Vector2(rand_range(0, WindowSize.x), rand_range(0, WindowSize.y))
 	obj.global_position = spawn_pos
+	print(spawn_pos)
 	add_child(obj)
 	pass
 

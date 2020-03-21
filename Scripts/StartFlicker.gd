@@ -32,18 +32,18 @@ func _explode():
 		$Star.rotation += 0.1
 		$Star/Glow.texture_scale += 0.3
 		$Star/Glow.energy -= 0.1
-		glowRadius += 30
+		glowRadius += 15
 	elif ($Star/Glow.energy >= 0):
 		$Star/Glow.texture_scale += 0.3
 		$Star/Glow.energy -= 0.1
-		glowRadius += 70
+		glowRadius += 35
 	else:
 		queue_free()
 	pass
 	
 func _check_collision():
 	reached = true
-	$RayCast2D.set_cast_to((player.global_position - self.global_position)/2)
+	$RayCast2D.set_cast_to(player.global_position - self.global_position)
 	yield(get_tree().create_timer(0.017), "timeout")
 	if not $RayCast2D.is_colliding():
 		emit_signal("damage_burst")

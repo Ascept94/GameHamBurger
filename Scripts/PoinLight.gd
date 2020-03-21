@@ -37,13 +37,13 @@ func _set_angle():
 func _check_distance():
 	var player_distance = player.global_position.distance_to(self.global_position)
 	if player_distance < radius:
-		$RayCast2D.set_cast_to((player.global_position - self.global_position)/2)
+		$RayCast2D.set_cast_to((player.global_position - self.global_position))
 		#yield(get_tree().create_timer(0.001), "timeout")
 		if not $RayCast2D.is_colliding():
 			emit_signal("damage", player_distance)
 	pass
 func _check_screen_bounds():
-	var window_size = OS.get_window_size()
+	var window_size = get_viewport().size
 	if global_position.y > window_size.y:
 		direction = direction.bounce(Vector2.DOWN)
 	if global_position.y < 0:

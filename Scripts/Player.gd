@@ -59,7 +59,7 @@ func _moveBarrier():
 	pass
 	
 func _isInBounds(newPos):
-	var window_size = OS.window_size
+	var window_size = get_viewport().size
 	
 	if (newPos.y > window_size.y || newPos.y < 0):
 		newPos.y = self.position.y		
@@ -69,7 +69,8 @@ func _isInBounds(newPos):
 	return newPos
 	
 func _isNearBounds():
-	var window_size = OS.window_size
+	var window_size = get_viewport().size
+
 	
 	if (self.position.y > window_size.y-50 || self.position.y < 50):
 		health -= 0.0025		
@@ -114,5 +115,5 @@ func _on_damage_burst():
 	
 func _game_over():
 	print("game over")
-	get_tree().quit()
+	get_tree().reload_current_scene()
 	pass
