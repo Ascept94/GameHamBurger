@@ -41,7 +41,10 @@ func _check_distance():
 		#yield(get_tree().create_timer(0.001), "timeout")
 		if not $RayCast2D.is_colliding():
 			emit_signal("damage", player_distance)
+	else:		
+		$RayCast2D.set_cast_to(Vector2(0,0))
 	pass
+	
 func _check_screen_bounds():
 	var window_size = get_viewport().size
 	if global_position.y > window_size.y:

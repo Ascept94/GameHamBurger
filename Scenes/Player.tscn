@@ -5,7 +5,6 @@
 [ext_resource path="res://Sprites/Light.png" type="Texture" id=3]
 
 [sub_resource type="CanvasItemMaterial" id=1]
-blend_mode = 4
 
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( 0, 10, 0, -10 )
@@ -24,7 +23,7 @@ polygon = PoolVector2Array( 0, 10, 0, -10 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 material = SubResource( 1 )
-color = Color( 0.0901961, 0.0117647, 0.180392, 1 )
+color = Color( 0.447059, 0.0901961, 0.823529, 1 )
 antialiased = true
 polygon = PoolVector2Array( 0, 10, 0, -10, 5, -10, 5, 10 )
 
@@ -37,4 +36,4 @@ position = Vector2( 0, 0 )
 [node name="Light2D" type="Light2D" parent="ParticlesCentral"]
 texture = ExtResource( 3 )
 texture_scale = 0.05
-energy = 7.28
+energy = 9.66
