@@ -20,6 +20,7 @@ run/main_scene="res://SplashScreen.tscn"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [debug]
 
